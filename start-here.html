@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Here · Destiny Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;0,900;1,300;1,400;1,500;1,700;1,900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink-light: #F8D4DD;
+    --pink: #E89BAA;
+    --pink-deep: #D17489;
+    --rose: #B85A75;
+    --gold: #C9985F;
+    --gold-light: #E5C69A;
+    --gold-pale: #F4E4CC;
+    --cream: #FBF6F2;
+    --cream-deep: #F4ECE5;
+    --ink: #3A2A2D;
+    --ink-soft: #6E5559;
+    --ink-faint: #A89396;
+    --white: #FFFFFF;
+    --shadow-sm: 0 2px 12px rgba(184, 90, 117, 0.08);
+    --shadow-md: 0 8px 32px rgba(184, 90, 117, 0.12);
+    --shadow-lg: 0 20px 60px rgba(184, 90, 117, 0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    min-height: 100vh;
+    font-family: 'Manrope', sans-serif;
+    color: var(--ink);
+    background: linear-gradient(135deg, #FBF6F2 0%, #F8E8EC 50%, #FAEDD8 100%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(232, 155, 170, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -200px;
+    left: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(201, 152, 95, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px 60px;
+  }
+
+  /* HEADER */
+  .header {
+    width: 100%;
+    max-width: 720px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .logo {
+    max-width: 240px;
+    width: 60%;
+    height: auto;
+    display: block;
+    margin: 0 auto 8px;
+  }
+  .brand-tagline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--rose);
+    letter-spacing: -0.005em;
+    margin-top: 6px;
+  }
+  .brand-tagline span { white-space: nowrap; }
+  .brand-tagline .ornament {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* CARD */
+  .card {
+    width: 100%;
+    max-width: 640px;
+    background: var(--white);
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pink) 0%, var(--gold) 100%);
+  }
+
+  .step { display: none; animation: fadeIn 0.5s ease; }
+  .step.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* TYPOGRAPHY */
+  .eyebrow {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .script {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--pink-deep) 0%, var(--rose) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+  }
+  .serif-h {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+  }
+  .lead {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    text-align: center;
+    max-width: 460px;
+    margin: 0 auto 36px;
+    font-weight: 400;
+  }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 24px auto 32px;
+  }
+  .divider-line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+  }
+  .divider-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* CTA BUTTONS */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--pink-deep) 0%, var(--rose) 100%);
+    color: var(--white);
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(184, 90, 117, 0.25);
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(184, 90, 117, 0.35);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold) 0%, #B8854D 100%);
+    box-shadow: 0 8px 24px rgba(201, 152, 95, 0.3);
+  }
+  .btn-gold:hover {
+    box-shadow: 0 12px 32px rgba(201, 152, 95, 0.4);
+  }
+
+  .btn-text {
+    background: none;
+    border: none;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: color 0.2s;
+  }
+  .btn-text:hover { color: var(--rose); }
+
+  .center { text-align: center; }
+
+  /* PROGRESS */
+  .progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .progress-dot {
+    width: 28px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--cream-deep);
+    transition: background 0.3s;
+  }
+  .progress-dot.complete { background: var(--gold); }
+  .progress-dot.current {
+    background: linear-gradient(90deg, var(--pink-deep), var(--rose));
+  }
+
+  .question-num {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .question {
+    font-family: 'Fraunces', serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 36px;
+    letter-spacing: -0.02em;
+  }
+
+  /* OPTIONS */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 18px 22px;
+    background: var(--cream);
+    border: 2px solid transparent;
+    border-radius: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    font-family: 'Manrope', sans-serif;
+    color: var(--ink);
+  }
+  .option:hover {
+    background: var(--white);
+    border-color: var(--pink-light);
+    transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
+  }
+  .option.selected {
+    background: linear-gradient(135deg, #FFF5F7 0%, #FDF2E7 100%);
+    border-color: var(--pink);
+    box-shadow: var(--shadow-md);
+  }
+  .option-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-light), var(--gold-pale));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+    color: var(--rose);
+    font-weight: 600;
+  }
+  .option.selected .option-icon {
+    background: linear-gradient(135deg, var(--pink-deep), var(--rose));
+    color: var(--white);
+  }
+  .option-content { flex: 1; }
+  .option-label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .option-sub {
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    color: var(--ink-faint);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  .option.selected .option-sub { color: var(--ink-soft); }
+
+  /* NAV ROW */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  /* RESULT */
+  .tier-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid var(--gold);
+    border-radius: 100px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .tier-name {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 78px;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--pink-deep) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+  .tier-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-bottom: 36px;
+    letter-spacing: -0.005em;
+  }
+  .benefits {
+    list-style: none;
+    margin: 0 0 32px;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #FDF8F4 0%, #FAEEEF 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(232, 155, 170, 0.2);
+  }
+  .benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .benefit-check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-deep), var(--rose));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .cta-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .compare-link {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--cream-deep);
+  }
+  .compare-link a {
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .compare-link a:hover { color: var(--rose); }
+
+  /* SPARKLE */
+  .sparkle {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 14px;
+    margin: 0 4px;
+    animation: twinkle 2s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    .page { padding: 20px 12px 40px; }
+    .card { padding: 36px 24px; border-radius: 20px; }
+    .script { font-size: 42px; }
+    .serif-h { font-size: 26px; }
+    .question { font-size: 24px; }
+    .tier-name { font-size: 60px; }
+    .lead { font-size: 14px; }
+    .option { padding: 14px 16px; gap: 12px; }
+    .option-icon { width: 32px; height: 32px; font-size: 14px; }
+    .option-label { font-size: 14px; }
+    .option-sub { font-size: 12px; }
+    .btn-primary { padding: 14px 28px; font-size: 11px; letter-spacing: 0.18em; }
+    .progress-dot { width: 22px; }
+    .benefits { padding: 18px 20px; }
+    .brand-tagline { font-size: 14px; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <img src="logo.png" alt="Destiny Fitness" class="logo">
+    <div class="brand-tagline">
+      <span>Your Body.</span>
+      <span class="ornament"></span>
+      <span>Your Rules.</span>
+      <span class="ornament"></span>
+      <span>Your Destiny.</span>
+    </div>
+  </header>
+
+  <main class="card">
+
+    <!-- WELCOME -->
+    <section class="step active" id="step-welcome">
+      <div class="eyebrow">Start Here</div>
+      <h1 class="script">Find Your Path<span class="sparkle">✦</span></h1>
+      <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-dot"></span>
+        <span class="divider-line"></span>
+      </div>
+      <h2 class="serif-h">Your transformation starts<br>with the right plan</h2>
+      <p class="lead">Answer five quick questions and we'll match you with the membership tier built for your goals, lifestyle, and where you are right now. Takes less than a minute.</p>
+      <div class="center">
+        <button class="btn-primary" onclick="startQuiz()">Begin the quiz →</button>
+      </div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="step" id="step-quiz">
+      <div class="progress" id="progress"></div>
+      <div class="question-num" id="qNum">Question 1 of 5</div>
+      <h2 class="question" id="qText"></h2>
+      <div class="options" id="options"></div>
+      <div class="nav-row">
+        <button class="btn-text" onclick="prevQuestion()" id="backBtn">← Back</button>
+        <button class="btn-text" onclick="nextQuestion()" id="nextBtn" disabled style="opacity:0.4;cursor:not-allowed;">Next →</button>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="step" id="step-result">
+      <div class="center">
+        <span class="tier-badge" id="tierBadge">Your perfect match</span>
+      </div>
+      <h1 class="tier-name" id="tierName"></h1>
+      <p class="tier-tagline" id="tierTagline"></p>
+      <ul class="benefits" id="benefits"></ul>
+      <div class="cta-row">
+        <a href="#" class="btn-primary" id="ctaBtn" target="_blank" rel="noopener">Join This Tier →</a>
+        <button class="btn-text" onclick="restart()">↺ Retake quiz</button>
+      </div>
+      <div class="compare-link">
+        <a href="#" id="compareLink" target="_blank" rel="noopener">Compare all tiers</a>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+  // =========================================================
+  // QUIZ DATA
+  // =========================================================
+  const questions = [
+    {
+      q: "Where are you starting from?",
+      options: [
+        { label: "Total beginner",      sub: "I haven't worked out in a while (or ever)", icon: "1", score: { basic: 2, pro: 1, elite: 0 } },
+        { label: "Some experience",     sub: "I work out occasionally but not consistently", icon: "2", score: { basic: 1, pro: 2, elite: 1 } },
+        { label: "Already consistent",  sub: "I train regularly and want to level up",       icon: "3", score: { basic: 0, pro: 1, elite: 2 } },
+      ]
+    },
+    {
+      q: "What's your main goal?",
+      options: [
+        { label: "Build a healthy routine",      sub: "Move my body, feel better, get started", icon: "♡", score: { basic: 2, pro: 1, elite: 0 } },
+        { label: "Tone, sculpt & lose weight",   sub: "Real results with a plan made for me",   icon: "✦", score: { basic: 0, pro: 2, elite: 1 } },
+        { label: "Full transformation",          sub: "I want serious accountability & coaching", icon: "★", score: { basic: 0, pro: 1, elite: 3 } },
+      ]
+    },
+    {
+      q: "How much guidance do you want?",
+      options: [
+        { label: "Just give me access",          sub: "I'll explore the workout & meal library",  icon: "○", score: { basic: 3, pro: 0, elite: 0 } },
+        { label: "Personalized plans for me",    sub: "Workouts & meals built around my goals",   icon: "◐", score: { basic: 0, pro: 3, elite: 1 } },
+        { label: "Direct access to Destiny",     sub: "Form feedback, check-ins, priority support", icon: "●", score: { basic: 0, pro: 0, elite: 3 } },
+      ]
+    },
+    {
+      q: "How important is nutrition support?",
+      options: [
+        { label: "General meal ideas",           sub: "Recipes I can pick and choose from",       icon: "◇", score: { basic: 2, pro: 1, elite: 0 } },
+        { label: "A meal plan for my goals",     sub: "Personalized to fit my lifestyle",         icon: "◈", score: { basic: 0, pro: 2, elite: 1 } },
+        { label: "Full nutrition coaching",      sub: "Macros, adjustments, all the support",     icon: "◆", score: { basic: 0, pro: 1, elite: 2 } },
+      ]
+    },
+    {
+      q: "What kind of accountability do you need?",
+      options: [
+        { label: "Community is enough",          sub: "I'm self-motivated and just need access",  icon: "♢", score: { basic: 3, pro: 0, elite: 0 } },
+        { label: "Weekly check-ins",             sub: "Keep me on track with progress reviews",   icon: "♢♢", score: { basic: 0, pro: 2, elite: 2 } },
+        { label: "Maximum 1-on-1 support",       sub: "Cycle-based training, video reviews, priority", icon: "♦", score: { basic: 0, pro: 0, elite: 3 } },
+      ]
+    },
+  ];
+
+  const tiers = {
+    basic: {
+      name: "Basic",
+      tagline: "Your foundation for a healthier, stronger you",
+      benefits: [
+        "Full access to Destiny's workout library (home + gym)",
+        "Curated meal plans & recipe collections",
+        "Private community for support & motivation",
+        "Self-paced learning at your own rhythm",
+      ],
+      url: "https://whop.com/joined/destinyfitness/products/basic-tier-df/",
+    },
+    pro: {
+      name: "Pro",
+      tagline: "Personalized plans built for your goals",
+      benefits: [
+        "Everything in Basic, plus deeper customization",
+        "Goal-based personalized workout plans",
+        "Personalized meal plans & nutrition guidance",
+        "Progress tracking dashboard & monthly challenges",
+      ],
+      url: "https://whop.com/joined/destinyfitness/products/pro-tier-7c/",
+    },
+    elite: {
+      name: "Elite",
+      tagline: "Direct access. Real coaching. Lasting transformation.",
+      benefits: [
+        "Everything in Pro, with premium support",
+        "Cycle-based training designed for women",
+        "Weekly check-ins & video form feedback",
+        "Priority support + all digital products included",
+      ],
+      url: "https://whop.com/joined/destinyfitness/products/elite-tier-8b/",
+    },
+  };
+
+  // =========================================================
+  // STATE
+  // =========================================================
+  let currentQ = 0;
+  const answers = new Array(questions.length).fill(null);
+
+  // =========================================================
+  // RENDER
+  // =========================================================
+  function showStep(id) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startQuiz() {
+    currentQ = 0;
+    renderQuestion();
+    showStep('step-quiz');
+  }
+
+  function renderQuestion() {
+    const q = questions[currentQ];
+    document.getElementById('qNum').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+    document.getElementById('qText').textContent = q.q;
+
+    // Progress dots
+    const progress = document.getElementById('progress');
+    progress.innerHTML = '';
+    for (let i = 0; i < questions.length; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'progress-dot';
+      if (i < currentQ) dot.classList.add('complete');
+      if (i === currentQ) dot.classList.add('current');
+      progress.appendChild(dot);
+    }
+
+    // Options
+    const optionsEl = document.getElementById('options');
+    optionsEl.innerHTML = '';
+    q.options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'option' + (answers[currentQ] === idx ? ' selected' : '');
+      btn.innerHTML = `
+        <div class="option-icon">${opt.icon}</div>
+        <div class="option-content">
+          <div class="option-label">${opt.label}</div>
+          <div class="option-sub">${opt.sub}</div>
+        </div>
+      `;
+      btn.onclick = () => selectOption(idx);
+      optionsEl.appendChild(btn);
+    });
+
+    // Back button visibility
+    document.getElementById('backBtn').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+
+    // Next button state
+    updateNextButton();
+  }
+
+  function selectOption(idx) {
+    answers[currentQ] = idx;
+    renderQuestion();
+    // Auto-advance after short delay for nice feel
+    setTimeout(() => {
+      if (currentQ < questions.length - 1) {
+        nextQuestion();
+      } else {
+        finishQuiz();
+      }
+    }, 350);
+  }
+
+  function updateNextButton() {
+    const nextBtn = document.getElementById('nextBtn');
+    if (answers[currentQ] !== null) {
+      nextBtn.disabled = false;
+      nextBtn.style.opacity = '1';
+      nextBtn.style.cursor = 'pointer';
+      nextBtn.textContent = currentQ === questions.length - 1 ? 'See result →' : 'Next →';
+    } else {
+      nextBtn.disabled = true;
+      nextBtn.style.opacity = '0.4';
+      nextBtn.style.cursor = 'not-allowed';
+    }
+  }
+
+  function nextQuestion() {
+    if (answers[currentQ] === null) return;
+    if (currentQ < questions.length - 1) {
+      currentQ++;
+      renderQuestion();
+    } else {
+      finishQuiz();
+    }
+  }
+
+  function prevQuestion() {
+    if (currentQ > 0) {
+      currentQ--;
+      renderQuestion();
+    }
+  }
+
+  function finishQuiz() {
+    // Tally scores
+    const totals = { basic: 0, pro: 0, elite: 0 };
+    answers.forEach((ansIdx, qIdx) => {
+      const opt = questions[qIdx].options[ansIdx];
+      totals.basic += opt.score.basic;
+      totals.pro   += opt.score.pro;
+      totals.elite += opt.score.elite;
+    });
+
+    // Pick highest, ties favor higher tier
+    let winner = 'basic';
+    if (totals.pro >= totals.basic) winner = 'pro';
+    if (totals.elite >= totals.pro && totals.elite >= totals.basic) winner = 'elite';
+
+    const tier = tiers[winner];
+    document.getElementById('tierName').textContent = tier.name;
+    document.getElementById('tierTagline').textContent = tier.tagline;
+
+    const benefitsEl = document.getElementById('benefits');
+    benefitsEl.innerHTML = '';
+    tier.benefits.forEach(b => {
+      const li = document.createElement('li');
+      li.className = 'benefit';
+      li.innerHTML = `<span class="benefit-check">✓</span><span>${b}</span>`;
+      benefitsEl.appendChild(li);
+    });
+
+    document.getElementById('ctaBtn').href = tier.url;
+    document.getElementById('compareLink').href = "https://whop.com/joined/destinyfitness/";
+
+    showStep('step-result');
+  }
+
+  function restart() {
+    currentQ = 0;
+    for (let i = 0; i < answers.length; i++) answers[i] = null;
+    showStep('step-welcome');
+  }
+</script>
+</body>
+</html>
